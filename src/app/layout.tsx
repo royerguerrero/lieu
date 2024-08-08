@@ -1,8 +1,19 @@
+import Link from "next/link";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+
+import { Public_Sans } from "next/font/google";
+
+import { Button } from "@/app/_components/ui/button";
+import Navigation from "@/app/_components/navigation";
+
+import { BaggageClaim } from "lucide-react";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Public_Sans({ subsets: ["latin"], weight: "variable" });
+// const instrument = Instrument_Serif({
+//   subsets: ["latin"],
+//   weight: "400"
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +26,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="es">
+      <body className={`${inter.className}`}>
+        <header className="flex p-5 justify-between fixed bottom-0 w-full z-10">
+          <Button
+            className="rounded-full w-fit px-4 py-2 font-normal flex gap-1 border text-base bg-white/20 backdrop-blur"
+            size={'lg'}
+            variant={'outline'}
+          >
+            Lieu Explorer
+          </Button>
+          <Navigation />
+        </header>
+        {children}
+        <footer className="text-neutral-400 flex justify-center">
+          <Link href={"/"} className="mx-auto text-center py-8">
+            A production of CodeNewt
+          </Link>
+        </footer>
+      </body>
     </html>
   );
 }
